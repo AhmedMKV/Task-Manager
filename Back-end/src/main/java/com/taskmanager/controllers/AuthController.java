@@ -16,20 +16,16 @@ public class AuthController {
     @Autowired
     private AuthService authService;
 
-    /**
-     * Register a new user
-     * POST /auth/register
-     */
+     // Register a new user
+     
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> register(@Valid @RequestBody AuthRequest request) {
         AuthResponse response = authService.register(request);
         return ResponseEntity.ok(response);
     }
 
-    /**
-     * Login user and get JWT token
-     * POST /auth/login
-     */
+     // Login user and get JWT token
+     
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@Valid @RequestBody AuthRequest request) {
         AuthResponse response = authService.login(request);

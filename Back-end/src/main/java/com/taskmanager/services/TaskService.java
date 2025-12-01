@@ -27,9 +27,8 @@ public class TaskService {
     @Autowired
     private UserService userService;
 
-    /**
-     * Get all tasks for a specific user
-     */
+     // Get all tasks for a specific user
+     
     @Transactional(readOnly = true)
     public List<TaskResponseDto> getUserTasks(String username) {
         User user = userService.findByUsername(username);
@@ -39,9 +38,8 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Get all tasks (Admin only)
-     */
+     // Get all tasks (Admin only)
+     
     @Transactional(readOnly = true)
     public List<TaskResponseDto> getAllTasks() {
         List<Task> tasks = taskRepository.findAllByOrderByCreatedAtDesc();
@@ -50,9 +48,8 @@ public class TaskService {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Create a new task for a user
-     */
+     // Create a new task for a user
+     
     @Transactional
     public TaskResponseDto createTask(String username, CreateTaskDto dto) {
         User user = userService.findByUsername(username);
@@ -86,9 +83,8 @@ public class TaskService {
         return convertToDto(task);
     }
 
-    /**
-     * Update a task (only if user owns it or is admin)
-     */
+     // Update a task (only if user owns it or is admin)
+     
     @Transactional
     public TaskResponseDto updateTask(String username, Long taskId, UpdateTaskDto dto) {
         Task task = taskRepository.findById(taskId)
@@ -138,9 +134,8 @@ public class TaskService {
         return convertToDto(task);
     }
 
-    /**
-     * Delete a task (only if user owns it or is admin)
-     */
+     // Delete a task 
+     
     @Transactional
     public void deleteTask(String username, Long taskId) {
         Task task = taskRepository.findById(taskId)
@@ -160,9 +155,8 @@ public class TaskService {
         taskRepository.delete(task);
     }
 
-    /**
-     * Get task statistics for a user
-     */
+     // Get task statistics for a user
+     
     @Transactional(readOnly = true)
     public Map<String, Object> getTaskStatistics(String username) {
         User user = userService.findByUsername(username);
@@ -193,9 +187,8 @@ public class TaskService {
         return stats;
     }
 
-    /**
-     * Convert Task entity to TaskResponseDto
-     */
+     // Convert Task entity to TaskResponseDto
+     
     private TaskResponseDto convertToDto(Task task) {
         return new TaskResponseDto(
                 task.getId(),

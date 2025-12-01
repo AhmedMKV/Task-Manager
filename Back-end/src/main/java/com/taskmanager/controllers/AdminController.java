@@ -24,20 +24,16 @@ public class AdminController {
     @Autowired
     private UserRepository userRepository;
 
-    /**
-     * Get all tasks (Admin only)
-     * GET /admin/tasks
-     */
+     // Get all tasks (Admin only)
+     
     @GetMapping("/tasks")
     public ResponseEntity<List<TaskResponseDto>> getAllTasks() {
         List<TaskResponseDto> tasks = taskService.getAllTasks();
         return ResponseEntity.ok(tasks);
     }
 
-    /**
-     * Get all users (Admin only)
-     * GET /admin/users
-     */
+     // Get all users (Admin only)
+     
     @GetMapping("/users")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         List<UserResponseDto> users = userRepository.findAll().stream()

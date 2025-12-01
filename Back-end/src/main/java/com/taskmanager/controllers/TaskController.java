@@ -22,10 +22,8 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
-    /**
-     * Get all tasks for the authenticated user
-     * GET /tasks
-     */
+     // Get all tasks for the authenticated user
+     
     @GetMapping
     public ResponseEntity<List<TaskResponseDto>> getUserTasks(Authentication authentication) {
         String username = getUsername(authentication);
@@ -33,10 +31,8 @@ public class TaskController {
         return ResponseEntity.ok(tasks);
     }
 
-    /**
-     * Create a new task
-     * POST /tasks
-     */
+     // Create a new task
+     
     @PostMapping
     public ResponseEntity<TaskResponseDto> createTask(
             @Valid @RequestBody CreateTaskDto dto,
@@ -46,10 +42,8 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
-    /**
-     * Update a task
-     * PUT /tasks/{id}
-     */
+     // Update a task
+     
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponseDto> updateTask(
             @PathVariable Long id,
@@ -60,10 +54,8 @@ public class TaskController {
         return ResponseEntity.ok(task);
     }
 
-    /**
-     * Delete a task
-     * DELETE /tasks/{id}
-     */
+     // Delete a task
+     
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(
             @PathVariable Long id,
@@ -73,10 +65,8 @@ public class TaskController {
         return ResponseEntity.noContent().build();
     }
 
-    /**
-     * Get task statistics
-     * GET /tasks/statistics
-     */
+     // Get task statistics
+     
     @GetMapping("/statistics")
     public ResponseEntity<Map<String, Object>> getStatistics(Authentication authentication) {
         String username = getUsername(authentication);
@@ -84,9 +74,8 @@ public class TaskController {
         return ResponseEntity.ok(stats);
     }
 
-    /**
-     * Extract username from authentication object
-     */
+     // Extract username from authentication object
+     
     private String getUsername(Authentication authentication) {
         if (authentication.getPrincipal() instanceof UserDetails) {
             return ((UserDetails) authentication.getPrincipal()).getUsername();

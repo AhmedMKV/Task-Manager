@@ -37,17 +37,15 @@ public class SecurityConfig {
     @Value("${cors.allowed-origins}")
     private String allowedOrigins;
 
-    /**
-     * Password encoder bean - BCrypt
-     */
+     // Password encoder bean - BCrypt
+     
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
-    /**
-     * Authentication provider
-     */
+     // Authentication provider
+     
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
@@ -56,18 +54,16 @@ public class SecurityConfig {
         return authProvider;
     }
 
-    /**
-     * Authentication manager
-     */
+     // Authentication manager
+     
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) 
             throws Exception {
         return authConfig.getAuthenticationManager();
     }
 
-    /**
-     * CORS configuration
-     */
+     // CORS configuration
+     
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
@@ -86,9 +82,8 @@ public class SecurityConfig {
         return source;
     }
 
-    /**
-     * Security filter chain configuration
-     */
+     // Security filter chain configuration
+     
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
